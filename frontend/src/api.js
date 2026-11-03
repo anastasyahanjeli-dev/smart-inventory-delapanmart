@@ -1,6 +1,6 @@
 /**
  * API Service for DelapanMart DSS
- * Connects to FastAPI Backend at http://localhost:8000
+ * Connects to FastAPI Backend
  */
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL ||
@@ -8,10 +8,37 @@ const API_BASE = import.meta.env.VITE_API_BASE_URL ||
     ? `http://${window.location.hostname}:8000/api`
     : "/api");
 
+async function parseError(res, defaultMsg) {
+  try {
+    const err = await res.json();
+    if (err?.detail) {
+      if (typeof err.detail === "string") return err.detail;
+      if (Array.isArray(err.detail?.errors)) return err.detail.errors.join(", ");
+      return JSON.stringify(err.detail);
+    }
+  } catch {
+    // Response bukan JSON (misal halaman HTML 404 Vercel atau 500 error)
+  }
+  return `${defaultMsg} (HTTP ${res.status}: Backend API tidak terjangkau atau VITE_API_BASE_URL belum disetel)`;
+}
+
+async function safeJson(res, defaultMsg) {
+  if (!res.ok) {
+    const errMsg = await parseError(res, defaultMsg);
+    throw new Error(errMsg);
+  }
+  const contentType = res.headers.get("content-type") || "";
+  if (!contentType.includes("application/json")) {
+    throw new Error(
+      `Backend mengembalikan respons bukan JSON (${contentType || "text/html"}). Pastikan alamat API backend sudah benar.`
+    );
+  }
+  return res.json();
+}
+
 export async function fetchOverview() {
   const res = await fetch(`${API_BASE}/inventory/overview`);
-  if (!res.ok) throw new Error("Gagal memuat ringkasan persediaan");
-  return res.json();
+  return safeJson(res, "Gagal memuat ringkasan persediaan");
 }
 
 export async function fetchProducts(search = "", category = "", status = "") {
@@ -21,8 +48,7 @@ export async function fetchProducts(search = "", category = "", status = "") {
   if (status) params.append("status", status);
 
   const res = await fetch(`${API_BASE}/inventory/products?${params.toString()}`);
-  if (!res.ok) throw new Error("Gagal memuat data produk");
-  return res.json();
+  return safeJson(res, "Gagal memuat data produk");
 }
 
 export async function addProduct(productData) {
@@ -31,11 +57,7 @@ export async function addProduct(productData) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(productData),
   });
-  if (!res.ok) {
-    const err = await res.json();
-    throw new Error(err.detail || "Gagal menambahkan produk");
-  }
-  return res.json();
+  return safeJson(res, "Gagal menambahkan produk");
 }
 
 export async function updateProduct(productId, productData) {
@@ -44,17 +66,12 @@ export async function updateProduct(productId, productData) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(productData),
   });
-  if (!res.ok) {
-    const err = await res.json();
-    throw new Error(err.detail || "Gagal memperbarui produk");
-  }
-  return res.json();
+  return safeJson(res, "Gagal memperbarui produk");
 }
 
 export async function fetchParameters() {
   const res = await fetch(`${API_BASE}/inventory/parameters`);
-  if (!res.ok) throw new Error("Gagal memuat parameter");
-  return res.json();
+  return safeJson(res, "Gagal memuat parameter");
 }
 
 export async function updateParameters(params) {
@@ -63,24 +80,21 @@ export async function updateParameters(params) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(params),
   });
-  if (!res.ok) throw new Error("Gagal memperbarui parameter");
-  return res.json();
+  return safeJson(res, "Gagal memperbarui parameter");
 }
 
 export async function resetParameters() {
   const res = await fetch(`${API_BASE}/inventory/reset-parameters`, {
     method: "POST",
   });
-  if (!res.ok) throw new Error("Gagal mereset parameter");
-  return res.json();
+  return safeJson(res, "Gagal mereset parameter");
 }
 
 export async function resetSimulation() {
   const res = await fetch(`${API_BASE}/inventory/reset-simulation`, {
     method: "POST",
   });
-  if (!res.ok) throw new Error("Gagal mereset dataset simulasi");
-  return res.json();
+  return safeJson(res, "Gagal mereset dataset simulasi");
 }
 
 export async function uploadImportFile(fileType, file) {
@@ -92,37 +106,29 @@ export async function uploadImportFile(fileType, file) {
     method: "POST",
     body: formData,
   });
-  if (!res.ok) {
-    const err = await res.json();
-    throw new Error(err.detail?.errors ? err.detail.errors.join(", ") : (err.detail || "Gagal mengunggah file"));
-  }
-  return res.json();
+  return safeJson(res, "Gagal mengunggah file");
 }
 
 export async function fetchAdminOverview() {
   const res = await fetch(`${API_BASE}/admin/overview`);
-  if (!res.ok) throw new Error("Gagal memuat overview admin");
-  return res.json();
+  return safeJson(res, "Gagal memuat overview admin");
 }
 
 export async function fetchAdminHistory() {
   const res = await fetch(`${API_BASE}/admin/history`);
-  if (!res.ok) throw new Error("Gagal memuat riwayat import");
-  return res.json();
+  return safeJson(res, "Gagal memuat riwayat import");
 }
 
 export async function fetchAdminActivities() {
   const res = await fetch(`${API_BASE}/admin/activities`);
-  if (!res.ok) throw new Error("Gagal memuat aktivitas sistem");
-  return res.json();
+  return safeJson(res, "Gagal memuat aktivitas sistem");
 }
 
 export async function clearAdminActivities() {
   const res = await fetch(`${API_BASE}/admin/activities/clear`, {
     method: "POST",
   });
-  if (!res.ok) throw new Error("Gagal membersihkan log aktivitas");
-  return res.json();
+  return safeJson(res, "Gagal membersihkan log aktivitas");
 }
 
 export function getExportRecommendationsUrl() {
