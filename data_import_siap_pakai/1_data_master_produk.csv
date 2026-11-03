@@ -1,0 +1,16 @@
+product_id,product_name,category,unit,current_stock,min_stock,lead_time_days,safety_stock,target_stock,on_order_quantity,unit_cost,minimum_order_quantity,pack_size
+PRD-101,Aqua Air Mineral 600ml,Minuman,Botol,4,24,2,12,72,0,2600,24,24
+PRD-102,Sari Roti Tawar Spesial,Roti & Kue,Bungkus,0,8,1,4,20,0,13500,5,5
+PRD-103,Indomie Goreng Spesial 85g,Kebutuhan Pokok,Bungkus,12,40,2,20,120,40,3100,40,40
+PRD-104,Teh Pucuk Harum 350ml,Minuman,Botol,10,24,2,10,48,0,3500,24,24
+PRD-105,Telur Ayam Negeri 1kg,Kebutuhan Pokok,Kilogram,4,10,1,5,25,0,27000,5,5
+PRD-106,Gula Pasir Gulaku Premium 1kg,Kebutuhan Pokok,Bungkus,22,15,3,8,35,0,16500,10,10
+PRD-107,Minyak Goreng Bimoli 2L,Kebutuhan Pokok,Pouch,18,10,3,6,24,0,36000,6,6
+PRD-108,Kopi Kapal Api Spesial Mix 10s,Minuman,Renceng,25,12,2,8,30,0,13000,5,5
+PRD-109,Sabun Mandi Lifebuoy Total 10 85g,Perawatan Pribadi,Batang,32,15,3,8,36,0,4200,12,12
+PRD-110,Sunlight Jeruk Nipis 750ml,Kebersihan Rumah,Pouch,16,10,3,6,24,0,15500,6,6
+PRD-111,Beras Ramos Setra Premium 5kg,Kebutuhan Pokok,Karung,88,15,4,8,30,0,72000,5,5
+PRD-112,Biskuit Khong Guan Classic 650g,Camilan,Kaleng,36,5,5,4,12,0,52000,6,6
+PRD-113,Sirup Marjan Cocopandan 460ml,Minuman,Botol,45,8,3,5,15,0,21500,6,6
+PRD-114,Pasta Gigi Pepsodent Fresh Cool 190g,Perawatan Pribadi,Kotak,6,12,3,6,28,24,14500,12,12
+PRD-115,Shampoo Pantene Anti Ketombe 160ml,Perawatan Pribadi,Botol,10,8,3,4,16,0,23000,6,6

@@ -1,0 +1,5 @@
+product_id,product_name,category,unit,current_stock,min_stock
+BRG-999,Produk Tanpa Kategori Valid,Lainnya,Pcs,-5,10
+BRG-999,Produk Duplikat ID,Lainnya,Pcs,12,5
+BRG-888,Produk Format Angka Rusak,Lainnya,Pcs,banyak,10
+,Produk Tanpa ID,Lainnya,Pcs,15,5

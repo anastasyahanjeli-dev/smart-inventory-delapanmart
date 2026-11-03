@@ -1,0 +1,16 @@
+product_id,product_name,category,unit,current_stock,min_stock,lead_time_days,safety_stock,target_stock,on_order_quantity,unit_cost,minimum_order_quantity,pack_size
+BRG-001,Air Mineral 600ml (DATA SIMULASI),Minuman,Botol,6,24,2,10,60,0,2500,24,24
+BRG-002,Roti Tawar Gandum (DATA SIMULASI),Roti & Kue,Bungkus,0,10,1,5,25,0,12000,5,5
+BRG-003,Keripik Singkong Balado (DATA SIMULASI),Camilan,Bungkus,18,12,3,8,40,0,5000,10,10
+BRG-004,Rokok Surya 16 (DATA SIMULASI),Rokok,Bungkus,8,20,2,10,50,0,32000,10,10
+BRG-005,Susu UHT Cokelat 250ml (DATA SIMULASI),Minuman,Kotak,14,15,3,6,35,0,5500,12,12
+BRG-006,Minyak Goreng 2L (DATA SIMULASI),Kebutuhan Pokok,Pouch,22,10,4,8,30,0,34000,6,6
+BRG-007,Beras Premium 5kg (DATA SIMULASI),Kebutuhan Pokok,Karung,85,15,5,10,40,0,68000,5,5
+BRG-008,Sabun Cair Refill 450ml (DATA SIMULASI),Perawatan Pribadi,Pouch,30,8,3,5,25,0,18000,6,6
+BRG-009,Mie Instan Goreng (DATA SIMULASI),Kebutuhan Pokok,Bungkus,45,40,2,20,120,0,3100,40,40
+BRG-010,Kopi Sachet Renceng (DATA SIMULASI),Minuman,Renceng,28,10,3,6,30,0,14000,5,5
+BRG-011,Biskuit Cokelat Kaleng (DATA SIMULASI),Camilan,Kaleng,42,8,7,5,15,0,38000,6,6
+BRG-012,Shampoo Botol 170ml (DATA SIMULASI),Perawatan Pribadi,Botol,16,10,4,6,25,0,22000,6,6
+BRG-013,Pembersih Lantai 750ml (DATA SIMULASI),Kebersihan Rumah,Pouch,15,10,3,5,20,0,13500,6,6
+BRG-014,Teh Celup 25s (DATA SIMULASI),Minuman,Kotak,12,8,2,4,18,0,6500,10,10
+BRG-015,Minuman Isotonik 500ml (DATA SIMULASI),Minuman,Botol,2,15,2,8,40,0,6000,12,12

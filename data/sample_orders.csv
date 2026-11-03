@@ -1,0 +1,3 @@
+product_id,quantity_ordered,order_status,expected_arrival_date
+BRG-008,20,Dalam Pengiriman,2026-11-05
+BRG-009,40,Dalam Pengiriman,2026-11-04
