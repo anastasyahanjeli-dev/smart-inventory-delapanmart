@@ -15,3 +15,4 @@ if %ERRORLEVEL% EQU 0 (
     echo Gagal melakukan push. Pastikan Anda sudah login ke akun GitHub di jendela popup yang muncul.
 )
 pause
+
